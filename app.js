@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+// const userRouter = require("./routes/users");
+const mainRouter = require("./routes/index");
 
 const app = express();
 
@@ -15,9 +17,12 @@ mongoose
 
 // new mongoose.Schema
 
-app.get('/', (req, res) => {
-  res.send('Hello world');
-});
+// app.get('/', (req, res) => {
+//   res.send('Hello world');
+// });
+
+app.use(express.json());
+app.use("/", mainRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
