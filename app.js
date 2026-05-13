@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const userRouter = require("./routes/users");
 const mainRouter = require("./routes/index");
 
 const app = express();
@@ -16,7 +15,7 @@ mongoose
 
 app.use((req, res, next) => {
   req.user = {
-    _id: "PASTE_TEST_USER_ID_HERE",
+    _id: "6a039b56c6884b6f3e3ad8be",
   };
   next();
 });
