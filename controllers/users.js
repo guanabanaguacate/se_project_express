@@ -17,9 +17,10 @@ const getUsers = (req, res) => {
 };
 
 const createUser = (req, res) => {
+  console.log("SIGNUP HIT");
+console.log(req.body);
   const { name, avatar, email, password } = req.body;
 
-  // User.create({ name, avatar })
   bcrypt
     .hash(password, 10)
     .then((hash) => {
@@ -102,8 +103,8 @@ const updateCurrentUser = (req, res) => {
     userId,
     { name, avatar },
     {
-      new: true,            // return updated document
-      runValidators: true,  // IMPORTANT: enables schema validation
+      new: true,
+      runValidators: true,
     }
   )
     .orFail()
