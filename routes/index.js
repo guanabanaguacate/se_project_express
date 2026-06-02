@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { NOT_FOUND } = require("../utils/errors");
 
 const { login, createUser } = require("../controllers/users");
 
@@ -10,7 +11,7 @@ router.post("/signup", createUser);
 router.post("/signin", login);
 
 router.use("/users", auth, userRouter);
-router.use("/items", auth, clothingItemRoutes);
+router.use("/items", clothingItemRoutes);
 
 router.use((req, res) => {
   res.status(NOT_FOUND).send({
