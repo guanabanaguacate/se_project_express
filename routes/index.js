@@ -13,7 +13,7 @@ router.use("/users", auth, userRouter);
 router.use("/items", auth, clothingItemRoutes);
 
 router.use((req, res) => {
-  res.status(404).send({
+  res.status(NOT_FOUND).send({
     message: "Requested resource not found",
   });
 });
