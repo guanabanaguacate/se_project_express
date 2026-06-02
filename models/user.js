@@ -26,11 +26,11 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
     validate: {
-    validator(value) {
-      return validator.isEmail(value);
+      validator(value) {
+        return validator.isEmail(value);
+      },
+      message: "You must enter a valid email",
     },
-    message: "You must enter a valid email",
-  },
   },
 
   password: {
@@ -40,7 +40,10 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.statics.findUserByCredentials = function (email, password) {
+userSchema.statics.findUserByCredentials = function findUserByCredentials(
+  email,
+  password
+) {
   return this.findOne({ email })
     .select("+password")
     .then((user) => {
@@ -57,6 +60,5 @@ userSchema.statics.findUserByCredentials = function (email, password) {
       });
     });
 };
-
 
 module.exports = mongoose.model("user", userSchema);
