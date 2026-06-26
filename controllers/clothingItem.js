@@ -20,6 +20,8 @@ const getClothingItems = (req, res) => {
 
 // ---------------- CREATE ITEM ----------------
 const createClothingItem = (req, res) => {
+    console.log("USER:", req.user);
+
   const { name, weather, imageUrl } = req.body;
 
   ClothingItem.create({
@@ -30,6 +32,8 @@ const createClothingItem = (req, res) => {
   })
     .then((item) => res.status(201).send(item))
     .catch((err) => {
+          console.log("CREATE ITEM ERROR:", err);
+
       if (err.name === "ValidationError") {
         return res.status(BAD_REQUEST).send({
           message: "Invalid data passed when creating an item",
