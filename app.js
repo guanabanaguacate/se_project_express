@@ -40,7 +40,6 @@ app.use(errors());
 // centralized error handler (LAST)
 app.use(errorHandler);
 
-// start server
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
