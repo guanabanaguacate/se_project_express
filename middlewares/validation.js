@@ -1,18 +1,12 @@
-// middleware/validation.js
-
 const { Joi, celebrate } = require("celebrate");
 const validator = require("validator");
 
-// Custom URL validator
 const validateURL = (value, helpers) => {
-  if (validator.isURL(value)) {
-    return value;
-  }
-
+  if (validator.isURL(value)) return value;
   return helpers.error("string.uri");
 };
 
-// Validate clothing item creation
+// CREATE CLOTHING ITEM
 module.exports.validateCardBody = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30).messages({
@@ -23,12 +17,12 @@ module.exports.validateCardBody = celebrate({
 
     imageUrl: Joi.string().required().custom(validateURL).messages({
       "string.empty": 'The "imageUrl" field must be filled in',
-      "string.uri": 'The "imageUrl" field must be a valid URL',
+      "string.uri": 'The "imageUrl" field must be a valid url',
     }),
   }),
 });
 
-// Validate signup
+// SIGNUP
 module.exports.validateUserBody = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30).messages({
@@ -38,7 +32,7 @@ module.exports.validateUserBody = celebrate({
 
     avatar: Joi.string().required().custom(validateURL).messages({
       "string.empty": 'The "avatar" field must be filled in',
-      "string.uri": 'The "avatar" field must be a valid URL',
+      "string.uri": 'The "avatar" field must be a valid url',
     }),
 
     email: Joi.string().required().email().messages({
@@ -52,27 +46,17 @@ module.exports.validateUserBody = celebrate({
   }),
 });
 
-// Validate signin/login
+// LOGIN
 module.exports.validateLogin = celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().email().messages({
-      "string.empty": 'The "email" field must be filled in',
-      "string.email": 'The "email" field must be a valid email',
-    }),
-
-    password: Joi.string().required().messages({
-      "string.empty": 'The "password" field must be filled in',
-    }),
+    email: Joi.string().required().email(),
+    password: Joi.string().required(),
   }),
 });
 
-// Validate Mongo ObjectId params
+// ID PARAMS
 module.exports.validateId = celebrate({
   params: Joi.object().keys({
-    id: Joi.string().required().hex().length(24).messages({
-      "string.hex": "ID must be hexadecimal",
-      "string.length": "ID must be 24 characters long",
-      "string.empty": "ID is required",
-    }),
+    itemId: Joi.string().required().hex().length(24),
   }),
 });
