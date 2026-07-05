@@ -14,3 +14,26 @@ The goal is to create a server with an API and user authorization.
 This project helped me understand how full-stack authentication systems work in real-world applications, especially how user security and authorization are handled on the backend.
 
 Project video: https://www.loom.com/share/b81cd60772f34828b0b731cd83f05037
+
+
+# Front end repository
+https://github.com/guanabanaguacate/se_project_react
+
+## Live Application
+
+Frontend:
+https://wtwr1.home.kg
+
+Backend API:
+https://api.wtwr1.home.kg
+
+## Technologies
+
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- PM2
+- Nginx
+
+
