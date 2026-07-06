@@ -21,8 +21,9 @@ router.use("/users", auth, userRouter);
 router.use("/items", clothingItemRoutes);
 
 // 404
-router.use((req, res) => {
-  res.status(NOT_FOUND).send({
+router.use((req, res, next) => {
+  next({
+    statusCode: NOT_FOUND,
     message: "Requested resource not found",
   });
 });
