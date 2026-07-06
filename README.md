@@ -15,8 +15,7 @@ This project helped me understand how full-stack authentication systems work in 
 
 Project 13 video: https://www.loom.com/share/b81cd60772f34828b0b731cd83f05037
 
-Project 15 video: 
-
+Project 15 video: https://www.loom.com/share/6864f60a679c4c1db220c08bbd8aac0d
 
 # Front end repository
 https://github.com/guanabanaguacate/se_project_react
