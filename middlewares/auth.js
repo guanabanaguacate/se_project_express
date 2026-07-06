@@ -4,8 +4,10 @@ const { UNAUTHORIZED } = require("../utils/errors");
 
 const auth = (req, res, next) => {
   const { authorization } = req.headers;
+
   if (!authorization) {
-    return res.status(UNAUTHORIZED).send({
+    return next({
+      statusCode: UNAUTHORIZED,
       message: "Authorization required",
     });
   }
@@ -13,7 +15,8 @@ const auth = (req, res, next) => {
   const [type, token] = authorization.split(" ");
 
   if (type !== "Bearer" || !token) {
-    return res.status(UNAUTHORIZED).send({
+    return next({
+      statusCode: UNAUTHORIZED,
       message: "Authorization required",
     });
   }
@@ -21,13 +24,14 @@ const auth = (req, res, next) => {
   try {
     const payload = jwt.verify(token, JWT_SECRET);
 
-  req.user = {
-  _id: payload._id,
-};
+    req.user = {
+      _id: payload._id,
+    };
 
     return next();
   } catch (err) {
-    return res.status(UNAUTHORIZED).send({
+    return next({
+      statusCode: UNAUTHORIZED,
       message: "Invalid token",
     });
   }
